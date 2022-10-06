@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>liga.medical</groupId>
+    <parent>
+        <groupId>liga.medical</groupId>
+        <artifactId>common</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>person-service</artifactId>
+    <packaging>pom</packaging>
+
+    <description>Сервис работы с физ.лицами</description>
+
+    <modules>
+        <module>dependency-management-bom</module>
+        <module>dto</module>
+        <module>core-api</module>
+        <module>utils</module>
+        <module>migration</module>
+        <module>core</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
+    </dependencies>
+</project>
