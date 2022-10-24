@@ -1,0 +1,1 @@
+select * from contact join address on contact.id = address.contact_id;

@@ -1,0 +1,1 @@
+select * from medical_card order by id limit (select count(id) from medical_card)/2;
