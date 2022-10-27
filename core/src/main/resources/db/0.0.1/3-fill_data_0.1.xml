@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="3" author="AlexAlyes">
+        <comment>
+            Заполнение таблиц рандомными данными 0.1
+        </comment>
+        
+        <insert tableName="contact">
+            <column name="id" value="1"/>
+            <column name="phone_number" value="8-800-555-35-35"/>
+            <column name="email" value="@test1.com"/>
+            <column name="profile_link" value="@Insta:111"/>
+        </insert>
+        <insert tableName="contact">
+            <column name="id" value="2"/>
+            <column name="phone_number" value="8-800-555-34-34"/>
+            <column name="email" value="@test2.com"/>
+            <column name="profile_link" value="@Insta:222"/>
+        </insert>
+        <insert tableName="contact">
+            <column name="id" value="3"/>
+            <column name="phone_number" value="8-800-555-33-33"/>
+            <column name="email" value="@test3.com"/>
+            <column name="profile_link" value="@Insta:333"/>
+        </insert>
+
+        <insert tableName="address">
+            <column name="id" value="1"/>
+            <column name="country_id" value="10"/>
+            <column name="city" value="NiNo"/>
+            <column name="index" value="600001"/>
+            <column name="street" value="Lenina"/>
+            <column name="building" value="1a"/>
+            <column name="flat" value="1001"/>
+            <column name="contact_id" value="3"/>
+        </insert>
+        <insert tableName="address">
+            <column name="id" value="2"/>
+            <column name="country_id" value="10"/>
+            <column name="city" value="NiNo"/>
+            <column name="index" value="600001"/>
+            <column name="street" value="Akimova"/>
+            <column name="building" value="2a"/>
+            <column name="flat" value="1002"/>
+            <column name="contact_id" value="2"/>
+        </insert>
+        <insert tableName="address">
+            <column name="id" value="3"/>
+            <column name="country_id" value="10"/>
+            <column name="city" value="NiNo"/>
+            <column name="index" value="600001"/>
+            <column name="street" value="Esenina"/>
+            <column name="building" value="2a"/>
+            <column name="flat" value="1001"/>
+            <column name="contact_id" value="1"/>
+        </insert>
+
+        <insert tableName="medical_card">
+            <column name="id" value="1"/>
+            <column name="client_status" value="ambulatory"/>
+            <column name="med_status" value="cure"/>
+            <column name="registry_date" value="10/23/2021"/>
+            <column name="comment" value="norm"/>
+        </insert>
+        <insert tableName="medical_card">
+            <column name="id" value="2"/>
+            <column name="client_status" value="ambulatory"/>
+            <column name="med_status" value="cure"/>
+            <column name="registry_date" value="9/22/2021"/>
+            <column name="comment" value="norm+"/>
+        </insert>
+        <insert tableName="medical_card">
+            <column name="id" value="3"/>
+            <column name="client_status" value="ambulatory"/>
+            <column name="med_status" value="cure"/>
+            <column name="registry_date" value="8/21/2021"/>
+            <column name="comment" value="norm-"/>
+        </insert>
+
+        <insert tableName="illness">
+            <column name="id" value="1"/>
+            <column name="type_id" value="9"/>
+            <column name="heaviness" value="covid-19"/>
+            <column name="appearance_dttm" value="9/10/2021"/>
+            <column name="recovery_dt" value="8/10/2021"/>
+            <column name="medical_card_id" value="3"/>
+        </insert>
+        <insert tableName="illness">
+            <column name="id" value="2"/>
+            <column name="type_id" value="10"/>
+            <column name="heaviness" value="covid-19"/>
+            <column name="appearance_dttm" value="9/10/2021"/>
+            <column name="recovery_dt" value="8/10/2021"/>
+            <column name="medical_card_id" value="2"/>
+        </insert>
+        <insert tableName="illness">
+            <column name="id" value="3"/>
+            <column name="type_id" value="11"/>
+            <column name="heaviness" value="covid-19"/>
+            <column name="appearance_dttm" value="9/10/2021"/>
+            <column name="recovery_dt" value="8/10/2021"/>
+            <column name="medical_card_id" value="1"/>
+        </insert>
+
+        <insert tableName="person_data">
+            <column name="id" value="1"/>
+            <column name="first_name" value="Mick"/>
+            <column name="last_name" value="Anderson"/>
+            <column name="birth_date" value="10/10/1967"/>
+            <column name="age" value="55"/>
+            <column name="sex" value="male"/>
+            <column name="contact_id" value="3"/>
+            <column name="medical_card_id" value="3"/>
+            <column name="parent_id" value="null"/>
+        </insert>
+        <insert tableName="person_data">
+            <column name="id" value="2"/>
+            <column name="first_name" value="Stepan"/>
+            <column name="last_name" value="Dori"/>
+            <column name="birth_date" value="11/10/1977"/>
+            <column name="age" value="45"/>
+            <column name="sex" value="male"/>
+            <column name="contact_id" value="2"/>
+            <column name="medical_card_id" value="2"/>
+            <column name="parent_id" value="null"/>
+        </insert>
+        <insert tableName="person_data">
+            <column name="id" value="3"/>
+            <column name="first_name" value="Lian"/>
+            <column name="last_name" value="Octo"/>
+            <column name="birth_date" value="11/10/1967"/>
+            <column name="age" value="55"/>
+            <column name="sex" value="female"/>
+            <column name="contact_id" value="1"/>
+            <column name="medical_card_id" value="1"/>
+            <column name="parent_id" value="null"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
+        

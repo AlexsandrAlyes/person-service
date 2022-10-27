@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="1" author="AlexAlyes">
+        <comment>
+            Создаем структуру таблиц сущностей
+        </comment>
+
+        <createTable tableName="medical_card" remarks="Медицинская карта">
+            <column name="id" type="bigserial" autoIncrement="true" >
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="client_status" type="char(255)"/>
+            <column name="med_status" type="char(255)"/>
+            <column name="registry_date" type="date"/>
+            <column name="comment" type="text"/>
+        </createTable>
+
+        <createTable tableName="contact" remarks="Контактная информация">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="phone_number" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(128)"/>
+            <column name="profile_link" type="text"/>
+        </createTable>
+
+        <createTable tableName="illness" remarks="Заболевание">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="type_id" type="bigint"/>
+            <column name="heaviness" type="char(10)"/>
+            <column name="appearance_dttm" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="recovery_dt" type="date"/>
+            <column name="medical_card_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="address" remarks="Адрес">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="country_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(255)"/>
+            <column name="index" type="integer"/>
+            <column name="street" type="varchar(255)"/>
+            <column name="building" type="varchar(32)"/>
+            <column name="flat" type="varchar(32)"/>
+            <column name="contact_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="person_data" remarks="Персональная информация">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birth_date" type="date"/>
+            <column name="age" type="smallint"/>
+            <column name="sex" type="char(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="medical_card_id" type="bigint">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="parent_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

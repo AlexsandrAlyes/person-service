@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+    initialization-mode: always
+    schema: classpath:db/0.0.1/create_new_schema.sql
+
+  liquibase:
+    change-log: classpath:/db/changelog.xml
+    enabled: true
+    default-schema: clinic
+logging:
+  level:
+    liquibase: debug
+
+server:
+  port: 8094

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="5" author="AlexAlyes">
+        <comment>
+            Обновление начального значения последовательности для всех таблиц.
+        </comment>
+
+        <sql>
+            alter sequence clinic.address_id_seq restart with 51;
+            alter sequence clinic.contact_id_seq restart with 51;
+            alter sequence clinic.illness_id_seq restart with 51;
+            alter sequence clinic.medical_card_id_seq restart with 53;
+            alter sequence clinic.person_data_id_seq restart with 51;
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>
