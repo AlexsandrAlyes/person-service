@@ -13,9 +13,12 @@ spring:
     change-log: classpath:/db/changelog.xml
     enabled: true
     default-schema: clinic
+
 logging:
   level:
     liquibase: debug
+
+
 
 server:
   port: 8094

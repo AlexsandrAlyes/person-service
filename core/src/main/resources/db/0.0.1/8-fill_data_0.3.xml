@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="8" author="AlexAlyes">
+        <comment>
+            Заполнение таблиц идентификационными данными
+        </comment>
+
+        <insert tableName="users">
+            <column name="id" value="1"/>
+            <column name="username" value="admin"/>
+            <column name="password" value="$2y$10$c9WnnNWdYmRO4pPtFDrkG.OwO6/QxU9tNRMDtEatnPY0HDOkGUEUK"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="2"/>
+            <column name="username" value="user"/>
+            <column name="password" value="$2y$10$NIeiiPopQZDRo65osExJremwuD/GqHjoDOS.se4Tt56Iv48qvmQ9W"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="id" value="1"/>
+            <column name="name" value="ADMIN"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="id" value="2"/>
+            <column name="name" value="USER"/>
+        </insert>
+
+        <insert tableName="user_role">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="user_role">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="2"/>
+        </insert>
+
+        <sql>
+            alter sequence clinic.users_id_seq restart with 3;
+            alter sequence clinic.roles_id_seq restart with 3;
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>
