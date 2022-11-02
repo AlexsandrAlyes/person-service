@@ -1,4 +1,4 @@
-package liga.medical.personservice.core.dto.dao;
+package liga.medical.personservice.core.dto.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDAO {
+public class UserDTO {
 
     private Long id;
     private String username;

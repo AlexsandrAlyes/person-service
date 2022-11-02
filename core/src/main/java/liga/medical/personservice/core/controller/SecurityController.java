@@ -1,10 +1,9 @@
 package liga.medical.personservice.core.controller;
 
-import liga.medical.personservice.core.dto.dao.UserDAO;
+import liga.medical.personservice.core.dto.model.UserDTO;
 import liga.medical.personservice.core.service.UserService;
 import liga.medical.personservice.core.validator.UserValidator;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +16,6 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class SecurityController {
 
     private final UserService userService;
@@ -30,24 +28,20 @@ public class SecurityController {
 
     @GetMapping("/reg")
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new UserDAO());
+        model.addAttribute("user", new UserDTO());
         return "reg";
     }
 
     @PostMapping("/reg")
-    public String addUser(@ModelAttribute UserDAO userDAO, BindingResult result, Model model) {
-        validator.validate(userDAO, result);
-        log.info(userDAO.toString());
+    public String addUser(@ModelAttribute UserDTO userDTO, BindingResult result, Model model) {
+        validator.validate(userDTO, result);
         if (result.hasErrors()) {
             List<FieldError> errorList = result.getFieldErrors();
-            errorList.forEach(s -> log.error(s.getDefaultMessage()));
             model.addAttribute("myerror", errorList);
-            model.addAttribute("user", userDAO);
+            model.addAttribute("user", userDTO);
             return "reg";
         }
-        log.info(userDAO.toString());
-        log.info("post");
-        userService.addUserInDB(userDAO);
+        userService.addUserInDB(userDTO);
         return "login";
     }
 }

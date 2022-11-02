@@ -1,6 +1,6 @@
 package liga.medical.personservice.core.validator;
 
-import liga.medical.personservice.core.dto.dao.UserDAO;
+import liga.medical.personservice.core.dto.model.UserDTO;
 import liga.medical.personservice.core.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,12 +18,12 @@ public class UserValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return UserDAO.class.equals(aClass);
+        return UserDTO.class.equals(aClass);
     }
 
     @Override
     public void validate(Object o, Errors errors) {
-        UserDAO dao = (UserDAO) o;
+        UserDTO dao = (UserDTO) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "empty",
                 "the field cannot be empty");
