@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="9" author="AlexAlyes">
+        <comment>
+            создание таблицы для логов
+        </comment>
+
+        <sql>
+            create table if not exists clinic.logs (
+                            id bigserial NOT NULL primary key ,
+                            log_date_time  timestamp,
+                            level_info  varchar(10) ,
+                            logger  varchar(100) ,
+                            message  varchar(1000),
+                            username varchar(40)
+                );
+        </sql>
+
+    </changeSet>
+</databaseChangeLog>

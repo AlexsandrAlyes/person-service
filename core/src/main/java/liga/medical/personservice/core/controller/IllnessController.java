@@ -1,5 +1,7 @@
 package liga.medical.personservice.core.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import liga.medical.personservice.core.dto.model.Illness;
 import liga.medical.personservice.core.service.IllnessService;
 import lombok.RequiredArgsConstructor;
@@ -17,27 +19,32 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/db")
+@Api(value = "Api по работе с болезнями")
 public class IllnessController {
 
     private final IllnessService illnessService;
 
     @GetMapping("/illness")
+    @ApiOperation(value = "Получение всех болезней")
     public List<Illness> getAllIllness() {
         return illnessService.getAllIllness();
     }
 
     @GetMapping("/illness/{id}")
+    @ApiOperation(value = "Получение болезни по id")
     public Illness geIllnessById(@PathVariable long id) {
         return illnessService.getIllnessById(id);
     }
 
     @PostMapping("/illness")
+    @ApiOperation(value = "Добавление новой болезни")
     public ResponseEntity<String> addIllnessInDB(@RequestBody Illness illness) {
         illnessService.addIllnessInDB(illness);
         return ResponseEntity.ok("Данные были успешно добавлены");
     }
 
     @DeleteMapping("/illness/{id}")
+    @ApiOperation(value = "Удаление болезни по id")
     public ResponseEntity<String> deleteIllnessInDB(@PathVariable long id) {
         illnessService.deleteIllnessInDB(id);
         return ResponseEntity.ok("Данные были успешно удалены");

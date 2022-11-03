@@ -22,7 +22,6 @@ public class UserService {
         userMapper.addUserInDB(user);
         Long id = userMapper.findByUsername(userDTO.getUsername()).getId();
         userMapper.assigningRoleToUSer(id, 2L);
-
     }
 
     public User findByUsername(String username) {
@@ -33,5 +32,4 @@ public class UserService {
         user.setRoleSet(userMapper.getUserRoles(user.getId()));
         return user;
     }
-
 }

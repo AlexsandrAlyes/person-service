@@ -16,8 +16,10 @@ spring:
 
 logging:
   level:
-    liquibase: debug
-
+    liquibase:
+      info
+  file:
+    name: person-service.log
 
 
 server:

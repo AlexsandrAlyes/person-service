@@ -26,9 +26,9 @@ public class UserValidator implements Validator {
         UserDTO dao = (UserDTO) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "empty",
-                "the field cannot be empty");
+                "the field username cannot be empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "empty",
-                "the field cannot be empty");
+                "the field password cannot be empty");
 
         if (dao.getPassword().length() < 8 || dao.getPassword().length() > 32) {
             errors.rejectValue("password", "password.range.size.invalid",
@@ -41,6 +41,7 @@ public class UserValidator implements Validator {
         if (userService.findByUsername(dao.getUsername()) != null) {
             errors.rejectValue("username", "username.duplicate", "username already in use");
         }
+
     }
 
 }
