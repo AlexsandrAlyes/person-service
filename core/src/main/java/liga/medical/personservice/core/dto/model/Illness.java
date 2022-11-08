@@ -1,7 +1,6 @@
 package liga.medical.personservice.core.dto.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -9,7 +8,6 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table("illness")
@@ -21,6 +19,7 @@ public class Illness {
     private String heaviness;
     private java.sql.Timestamp appearanceDttm;
     private java.sql.Date recoveryDt;
-    @MappedCollection(idColumn = "id")
+
+    @MappedCollection(idColumn = "id",keyColumn = "medical_card_id")
     private MedicalCard medicalCard;
 }

@@ -1,15 +1,15 @@
 package liga.medical.personservice.core.dto.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.util.List;
+
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table("person_data")
@@ -22,10 +22,13 @@ public class PersonData {
     private java.sql.Date birthDate;
     private long age;
     private String sex;
-    @MappedCollection(idColumn = "id")
+
+    @MappedCollection(idColumn = "id",keyColumn = "contact_id")
     private Contact contact;
-    @MappedCollection(idColumn = "id")
+
+    @MappedCollection(idColumn = "id",keyColumn = "medical_card_id")
     private MedicalCard medicalCard;
-    private long parentId;
+
+    private List<PersonData> parents;
 
 }

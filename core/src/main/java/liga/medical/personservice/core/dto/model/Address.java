@@ -1,7 +1,6 @@
 package liga.medical.personservice.core.dto.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -9,7 +8,6 @@ import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table("address")
@@ -30,7 +28,7 @@ public class Address {
 
     private String flat;
 
-    @MappedCollection(idColumn = "id")
+    @MappedCollection(idColumn = "id",keyColumn = "contact_id")
     private Contact contact;
 
 }
