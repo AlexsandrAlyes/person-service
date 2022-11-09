@@ -1,7 +1,7 @@
 package liga.medical.personservice.core.validator;
 
 import liga.medical.personservice.core.dto.model.UserDTO;
-import liga.medical.personservice.core.service.UserService;
+import liga.medical.personservice.core.service.serviceImpl.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

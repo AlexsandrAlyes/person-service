@@ -2,7 +2,13 @@ package liga.medical.personservice.core.aop;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import liga.medical.personservice.core.dto.entity.Debug;
+import liga.medical.personservice.core.dto.entity.Exception;
 import liga.medical.personservice.core.dto.model.LogDTO;
+import liga.medical.personservice.core.dto.model.MessageDTO;
+import liga.medical.personservice.core.dto.model.MessageStatus;
+import liga.medical.personservice.core.service.DebugService;
+import liga.medical.personservice.core.service.ExceptionService;
 import liga.medical.personservice.core.service.LogService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @Slf4j
 @Aspect
@@ -22,6 +29,12 @@ import java.time.LocalDateTime;
 public class LoggingAdvice {
 
     private final LogService logService;
+    private final DebugService debugService;
+    private final ExceptionService exceptionService;
+
+    @Pointcut("@annotation(liga.medical.personservice.core.annotations.DbLog)")
+    public void loggableMethodsQueue() {
+    }
 
     @Pointcut("@annotation(liga.medical.personservice.core.annotations.Loggable)")
     public void loggableMethods() {
@@ -100,5 +113,45 @@ public class LoggingAdvice {
 
         return obj;
     }
+
+    @Around("loggableMethodsQueue()")
+    public Object applicationLoggerQueue(ProceedingJoinPoint joinPoint) throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        String className = joinPoint.getTarget().getClass().toString();
+        String methodName = joinPoint.getSignature().getName();
+        Object[] array = joinPoint.getArgs();
+
+        Object argsOb = Arrays.stream(array).findFirst().get();
+        MessageDTO messageDTO = null;
+        if (argsOb instanceof String) {
+            messageDTO = mapper.readValue(argsOb.toString(), MessageDTO.class);
+        }
+
+        if (messageDTO.getType() == MessageStatus.ALERT || messageDTO.getType() == MessageStatus.DAILY) {
+            Debug debug = new Debug();
+            debug.setSystemTypeId(messageDTO.getType().toString());
+            debug.setMethodParams(className + "." + methodName + "" + mapper.writeValueAsString(array));
+            debug = debugService.saveDebugInDB(debug);
+            log.info("id: " + debug.getId() + " system_type: " + debug.getSystemTypeId() + " param: " + debug.getMethodParams());
+        } else {
+            Exception exception = new Exception();
+            exception.setSystemTypeId("Error");
+            exception.setMethodParams(className + "." + methodName + "" + mapper.writeValueAsString(array));
+            exception = exceptionService.saveExceptionInDB(exception);
+            log.error("id: " + exception.getId() + " system_type: " + exception.getSystemTypeId() + " param: " + exception.getMethodParams());
+        }
+
+        Object obj = null;
+
+        try {
+            obj = joinPoint.proceed();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        return obj;
+    }
+
 }
 

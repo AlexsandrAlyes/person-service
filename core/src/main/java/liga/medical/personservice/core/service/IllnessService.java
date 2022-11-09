@@ -1,31 +1,17 @@
 package liga.medical.personservice.core.service;
 
-import liga.medical.personservice.core.dto.mapping.IllnessMapper;
-import liga.medical.personservice.core.dto.model.Illness;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import liga.medical.personservice.core.dto.entity.Illness;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class IllnessService {
+public interface IllnessService {
 
-    private final IllnessMapper illnessMapper;
+    List<Illness> getAllIllnesses();
 
-    public List<Illness> getAllIllness() {
-        return illnessMapper.listIllness();
-    }
+    Illness getIllnessById(long id);
 
-    public Illness getIllnessById(long id) {
-        return illnessMapper.getIllnessById(id);
-    }
+    Illness saveIllness(Illness illness);
 
-    public void addIllnessInDB(Illness illness) {
-        illnessMapper.addIllnessInDB(illness);
-    }
+    void deleteIllnessById(long id);
 
-    public void deleteIllnessInDB(long id) {
-        illnessMapper.deleteIllnessById(id);
-    }
 }

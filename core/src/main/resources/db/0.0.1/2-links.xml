@@ -32,5 +32,11 @@
                                  constraintName="fk_person_data_med_car"
                                  referencedTableName="medical_card"
                                  referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="person_data"
+                                 baseColumnNames="parent_id"
+                                 constraintName="fk_person_data_parent"
+                                 referencedTableName="person_data"
+                                 referencedColumnNames="id"/>
     </changeSet>
 </databaseChangeLog>

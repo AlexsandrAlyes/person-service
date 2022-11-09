@@ -4,7 +4,7 @@ import liga.medical.personservice.core.annotations.Loggable;
 import liga.medical.personservice.core.dto.model.LogDTO;
 import liga.medical.personservice.core.dto.model.UserDTO;
 import liga.medical.personservice.core.service.LogService;
-import liga.medical.personservice.core.service.UserService;
+import liga.medical.personservice.core.service.serviceImpl.UserService;
 import liga.medical.personservice.core.validator.UserValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

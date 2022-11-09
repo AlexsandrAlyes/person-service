@@ -2,7 +2,7 @@ package liga.medical.personservice.core.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import liga.medical.personservice.core.dto.model.Illness;
+import liga.medical.personservice.core.dto.entity.Illness;
 import liga.medical.personservice.core.service.IllnessService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class IllnessController {
     @GetMapping("/illness")
     @ApiOperation(value = "Получение всех болезней")
     public List<Illness> getAllIllness() {
-        return illnessService.getAllIllness();
+        return illnessService.getAllIllnesses();
     }
 
     @GetMapping("/illness/{id}")
@@ -39,14 +39,14 @@ public class IllnessController {
     @PostMapping("/illness")
     @ApiOperation(value = "Добавление новой болезни")
     public ResponseEntity<String> addIllnessInDB(@RequestBody Illness illness) {
-        illnessService.addIllnessInDB(illness);
+        illnessService.saveIllness(illness);
         return ResponseEntity.ok("Данные были успешно добавлены");
     }
 
     @DeleteMapping("/illness/{id}")
     @ApiOperation(value = "Удаление болезни по id")
     public ResponseEntity<String> deleteIllnessInDB(@PathVariable long id) {
-        illnessService.deleteIllnessInDB(id);
+        illnessService.deleteIllnessById(id);
         return ResponseEntity.ok("Данные были успешно удалены");
     }
 }

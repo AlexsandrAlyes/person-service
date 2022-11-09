@@ -2,7 +2,7 @@ package liga.medical.personservice.core.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import liga.medical.personservice.core.dto.model.Address;
+import liga.medical.personservice.core.dto.entity.Address;
 import liga.medical.personservice.core.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class AddressController {
     @GetMapping("/address")
     @ApiOperation(value = "Получение всех адрессов")
     public List<Address> getAllAddress() {
-        return addressService.getAllAddress();
+        return addressService.getAllAddresses();
     }
 
     @GetMapping("/address/{id}")
@@ -39,14 +39,14 @@ public class AddressController {
     @PostMapping("/address")
     @ApiOperation(value = "Добавление нового адреса")
     public ResponseEntity<String> addAddressInDB(@RequestBody Address address) {
-        addressService.addAddressInDB(address);
+        addressService.saveAddress(address);
         return ResponseEntity.ok("Данные были успешно добавлены");
     }
 
     @DeleteMapping("/address/{id}")
     @ApiOperation(value = "Удаление адреса по id")
     public ResponseEntity<String> deleteAddressInDB(@PathVariable long id) {
-        addressService.deleteAddressInDB(id);
+        addressService.deleteAddressById(id);
         return ResponseEntity.ok("Данные были успешно удалены");
     }
 }

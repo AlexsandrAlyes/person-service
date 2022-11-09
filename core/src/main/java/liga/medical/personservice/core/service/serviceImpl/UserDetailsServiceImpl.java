@@ -1,7 +1,8 @@
-package liga.medical.personservice.core.service;
+package liga.medical.personservice.core.service.serviceImpl;
 
 import liga.medical.personservice.core.dto.model.LogDTO;
 import liga.medical.personservice.core.dto.model.User;
+import liga.medical.personservice.core.service.LogService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;

@@ -126,7 +126,7 @@
             <column name="sex" value="male"/>
             <column name="contact_id" value="2"/>
             <column name="medical_card_id" value="2"/>
-            <column name="parent_id" value="null"/>
+            <column name="parent_id" value="1"/>
         </insert>
         <insert tableName="person_data">
             <column name="id" value="3"/>

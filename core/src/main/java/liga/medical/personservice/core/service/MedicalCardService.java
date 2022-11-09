@@ -1,31 +1,17 @@
 package liga.medical.personservice.core.service;
 
-import liga.medical.personservice.core.dto.mapping.MedicalCardMapper;
-import liga.medical.personservice.core.dto.model.MedicalCard;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import liga.medical.personservice.core.dto.entity.MedicalCard;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class MedicalCardService {
+public interface MedicalCardService {
 
-    private final MedicalCardMapper medicalCardMapper;
+    List<MedicalCard> getAllMedicalCards();
 
-    public List<MedicalCard> getAllMedicalCard() {
-        return medicalCardMapper.listMedicalCard();
-    }
+    MedicalCard getMedicalCardById(long id);
 
-    public MedicalCard getMedicalCardById(long id) {
-        return medicalCardMapper.getMedicalCardById(id);
-    }
+    MedicalCard saveMedicalCard(MedicalCard medicalCard);
 
-    public void addMedicalCardInDB(MedicalCard medicalCard) {
-        medicalCardMapper.addMedicalCardInDB(medicalCard);
-    }
+    void deleteMedicalCardById(long id);
 
-    public void deleteMedicalCardInDB(long id) {
-        medicalCardMapper.deleteMedicalCardById(id);
-    }
 }

@@ -13,4 +13,5 @@
     <include file="db/0.0.1/7-links_for_users_roles.xml"/>
     <include file="db/0.0.1/8-fill_data_0.3.xml"/>
     <include file="db/0.0.1/9-table_for_logs.xml"/>
+    <include file="db/0.0.1/10-table_signals.xml"/>
 </databaseChangeLog>

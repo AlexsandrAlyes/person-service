@@ -1,31 +1,17 @@
 package liga.medical.personservice.core.service;
 
-import liga.medical.personservice.core.dto.mapping.ContactMapper;
-import liga.medical.personservice.core.dto.model.Contact;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import liga.medical.personservice.core.dto.entity.Contact;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class ContactService {
+public interface ContactService {
 
-    private final ContactMapper contactMapper;
+    List<Contact> getAllContacts();
 
-    public List<Contact> getAllContacts() {
-        return contactMapper.listContacts();
-    }
+    Contact saveContact(Contact contact);
 
-    public Contact getContactById(long id) {
-        return contactMapper.getContactById(id);
-    }
+    Contact getContactById(long id);
 
-    public void addContactInDB(Contact contact) {
-        contactMapper.addContactInDB(contact);
-    }
+    void deleteContactById(long id);
 
-    public void deleteContactInDB(long id) {
-        contactMapper.deleteContactById(id);
-    }
 }

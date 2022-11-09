@@ -1,6 +1,6 @@
 package liga.medical.personservice.core.config;
 
-import liga.medical.personservice.core.service.UserDetailsServiceImpl;
+import liga.medical.personservice.core.service.serviceImpl.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/reg/**","/swagger-ui/**").permitAll()
+                .antMatchers("/reg/**", "/swagger-ui/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/db/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()

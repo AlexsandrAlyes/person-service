@@ -2,7 +2,7 @@ package liga.medical.personservice.core.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import liga.medical.personservice.core.dto.model.Contact;
+import liga.medical.personservice.core.dto.entity.Contact;
 import liga.medical.personservice.core.service.ContactService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,14 +39,14 @@ public class ContactController {
     @PostMapping("/contact")
     @ApiOperation(value = "Добавление нового контакта")
     public ResponseEntity<String> addContactInDB(@RequestBody Contact contact) {
-        contactService.addContactInDB(contact);
+        contactService.saveContact(contact);
         return ResponseEntity.ok("Данные были успешно добавлены");
     }
 
     @DeleteMapping("/contact/{id}")
     @ApiOperation(value = "Удаление контакта по id")
     public ResponseEntity<String> deleteContactInDB(@PathVariable long id) {
-        contactService.deleteContactInDB(id);
+        contactService.deleteContactById(id);
         return ResponseEntity.ok("Данные были успешно удалены");
     }
 }

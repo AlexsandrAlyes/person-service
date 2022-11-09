@@ -1,4 +1,4 @@
-package liga.medical.personservice.core.service;
+package liga.medical.personservice.core.service.serviceImpl;
 
 import liga.medical.personservice.core.dto.mapping.RoleMapper;
 import liga.medical.personservice.core.dto.model.Role;

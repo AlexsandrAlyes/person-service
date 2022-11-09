@@ -1,31 +1,17 @@
 package liga.medical.personservice.core.service;
 
-import liga.medical.personservice.core.dto.mapping.PersonDataMapper;
-import liga.medical.personservice.core.dto.model.PersonData;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import liga.medical.personservice.core.dto.entity.PersonData;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class PersonDataService {
+public interface PersonDataService {
 
-    private final PersonDataMapper personDataMapper;
+    List<PersonData> getAllPersonData();
 
-    public List<PersonData> getPersonData() {
-        return personDataMapper.listPersonData();
-    }
+    PersonData getPersonDataById(long id);
 
-    public PersonData getPersonDataById(long id) {
-        return personDataMapper.getPersonDateById(id);
-    }
+    PersonData savePersonData(PersonData personData);
 
-    public void addPersonDateInDB(PersonData personData) {
-        personDataMapper.addPersonDateInDB(personData);
-    }
+    void deletePersonDataById(long id);
 
-    public void deletePersonDateInDB(long id) {
-        personDataMapper.deletePersonDateById(id);
-    }
 }

@@ -11,12 +11,12 @@
 
         <sql>
             create table if not exists clinic.logs (
-                            id bigserial NOT NULL primary key ,
+                            id             bigserial  NOT NULL primary key ,
                             log_date_time  timestamp,
-                            level_info  varchar(10) ,
-                            logger  varchar(100) ,
-                            message  varchar(1000),
-                            username varchar(40)
+                            level_info     varchar(10) ,
+                            logger         varchar(100) ,
+                            message        varchar(1000),
+                            username       varchar(40)
                 );
         </sql>
 
